@@ -216,7 +216,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 8,
    "metadata": {
     "colab": {},
     "colab_type": "code",
@@ -233,13 +233,44 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 9,
    "metadata": {
     "colab": {},
     "colab_type": "code",
     "id": "wS_mUTWjLcPQ"
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Model: \"sequential_1\"\n",
+      "_________________________________________________________________\n",
+      "Layer (type)                 Output Shape              Param #   \n",
+      "=================================================================\n",
+      "conv2d_1 (Conv2D)            (None, 512, 512, 16)      1216      \n",
+      "_________________________________________________________________\n",
+      "max_pooling2d_1 (MaxPooling2 (None, 256, 256, 16)      0         \n",
+      "_________________________________________________________________\n",
+      "dropout_1 (Dropout)          (None, 256, 256, 16)      0         \n",
+      "_________________________________________________________________\n",
+      "conv2d_2 (Conv2D)            (None, 256, 256, 36)      14436     \n",
+      "_________________________________________________________________\n",
+      "max_pooling2d_2 (MaxPooling2 (None, 128, 128, 36)      0         \n",
+      "_________________________________________________________________\n",
+      "dropout_2 (Dropout)          (None, 128, 128, 36)      0         \n",
+      "_________________________________________________________________\n",
+      "flatten_1 (Flatten)          (None, 589824)            0         \n",
+      "_________________________________________________________________\n",
+      "dense_1 (Dense)              (None, 6)                 3538950   \n",
+      "=================================================================\n",
+      "Total params: 3,554,602\n",
+      "Trainable params: 3,554,602\n",
+      "Non-trainable params: 0\n",
+      "_________________________________________________________________\n"
+     ]
+    }
+   ],
    "source": [
     "from keras.models import Sequential, model_from_yaml, load_model\n",
     "from keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D\n",
@@ -259,7 +290,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 10,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -271,7 +302,16 @@
    "cell_type": "code",
    "execution_count": null,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Train on 2022 samples, validate on 506 samples\n",
+      "Epoch 1/30\n"
+     ]
+    }
+   ],
    "source": [
     "train_history = model.fit(x_train, y_train, batch_size=20, epochs=30, verbose=2, validation_data=(x_test, y_test))"
    ]
